@@ -1,4 +1,6 @@
-class Winner
+# frozen_string_literal: true
+
+class BetCheker
   attr_reader :result, :bet
 
   def initialize(result:, bet:)
@@ -6,7 +8,7 @@ class Winner
     @bet = bet
   end
 
-  def check
+  def result_of_bet
     return 'Invalid result or bet inputs' unless correct_inputs?
     return 1 if right_result?
     return 0 if right_final_result?
@@ -45,10 +47,14 @@ class Winner
   end
 
   def final_result
-    result_array[0].to_i - result_array[1].to_i
+    outcome(result_array)
   end
 
   def bet_outcome
-    bet_array[0].to_i - bet_array[1].to_i
+    outcome(bet_array)
+  end
+
+  def outcome(outcome_array)
+    outcome_array[0].to_i - outcome_array[1].to_i
   end
 end
